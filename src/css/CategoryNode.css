@@ -1,0 +1,108 @@
+.category-data {
+    display: inline-flex;
+    height: 40px;
+    align-items: center;
+    justify-content: flex-start;
+    /* Căn nội dung về bên trái */
+    gap: 10px;
+    padding: 2px;
+    box-sizing: content-box;
+    position: relative;
+}
+
+.category-data>*:last-child {
+    margin-right: 10px;
+    /* Thêm 10px vào phần tử cuối cùng */
+}
+
+.category-data.selected {
+    /* background-color:#ffefd5; */
+    background: #F6C74433;
+    /* Màu nền khi chọn */
+    border-radius: 5px;
+}
+
+.category-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 0.5px solid var(--grey-dark-100, #E1DEDD);
+    float: left;
+    position: relative;
+    background: white;
+}
+
+.category-logo img {
+    width: 100%;
+    /* Ảnh chiếm toàn bộ chiều rộng của div */
+    height: 100%;
+    /* Ảnh chiếm toàn bộ chiều cao của div */
+    object-fit: contain;
+    /* Hiển thị toàn bộ ảnh trong div */
+}
+
+.category-container {
+    height: 27px;
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.category-name {
+    /* font-family: inter; */
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 27px;
+    color: #2C2A29;
+    float: left;
+}
+
+.button-category {
+    border: none;
+    background: none;
+}
+
+.button-category svg {
+    width: 20px;
+    height: 20px;
+    float: left;
+    border: none;
+    background: none;
+}
+
+.subcategories {
+    display: flex;
+    margin-left: 30px;
+    /* Indent subcategories */
+    padding-left: 10px;
+    border-left: 2px solid #ccc;
+}
+.navigation{
+    margin-left: 15px;
+    margin-right: 10px;
+    width: 18px;
+    height: 24px;
+    float: left;
+    border-left: solid #ccc 1px;
+    border-bottom: solid #ccc 1px;
+    border-bottom-left-radius: 10px;
+    /* float: left; */
+}
+.sub {
+    height: 100%;
+    margin-left: 20px;
+}
+.all-category{
+    position: relative;
+}
+.sub:before {
+    background-color: #e1dedd;
+    content: "";
+    display: block;
+    height: calc(100% - 65px);
+    left: 15px;
+    position: absolute;
+    top: 42px;
+    width: 1px;
+}
+

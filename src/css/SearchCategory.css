@@ -1,0 +1,146 @@
+.layout {
+    position: absolute;
+    width: 1320px;
+    height: 495px;
+    top: 112px;
+    left: 49px;
+    display: flex;
+    flex-direction: column;
+    /* Đảm bảo các phần tử xếp chồng */
+    gap: 6px;
+}
+
+.search-bar {
+    width: 1320px;
+    height: 59px;
+    gap: 0;
+    display: flex;
+    align-items: center;
+    /* Căn giữa icon theo chiều dọc */
+    justify-content: space-between;
+    border: 1px solid var(--grey-dark-200, #BCB6B2);
+    padding: 16px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    /* Bao gồm padding và border trong kích thước */
+}
+
+
+.search-container {
+    width: 388px;
+    /* Độ rộng cố định của container */
+    height: 27px;
+    /* Độ cao cố định */
+    display: flex;
+    /* Kích hoạt Flexbox */
+    align-items: center;
+    /* Căn giữa icon và input theo chiều dọc */
+    gap: 10px;
+    /* Khoảng cách giữa icon và input */
+}
+
+.icon-search {
+    display: flex;
+    /* Đảm bảo icon nằm giữa */
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-search svg {
+    width: 24px;
+    /* Chiều rộng icon cố định */
+    height: 24px;
+    /* Chiều cao icon cố định */
+}
+
+.input-container {
+    flex-grow: 1;
+    /* Input chiếm toàn bộ không gian còn lại */
+    height: 100%;
+    /* Chiều cao bằng với search-container */
+}
+
+.input-container input {
+    width: 100%;
+    /* Input mở rộng chiếm toàn bộ không gian */
+    height: 100%;
+    /* Độ cao bằng input-container */
+    /* font-family: Inter; */
+    font-size: 16px;
+    font-weight: 500;
+    color: #95908D;
+    ;
+    outline: none;
+    /* Loại bỏ viền focus mặc định */
+    border: none;
+
+}
+
+.icon-down {
+    display: flex;
+    /* Kích hoạt flexbox cho căn giữa */
+    justify-content: center;
+    /* Căn giữa theo chiều ngang */
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    opacity: 1;
+    /* Đảm bảo icon hiển thị */
+    line-height: 0;
+    /* Loại bỏ khoảng cách dòng */
+}
+
+.icon-down svg {
+    width: 16px;
+    height: 16px;
+}
+
+.form-container {
+    width: 1320px;
+    height: 430px;
+    padding: 30px;
+    gap: 0px;
+    border-radius: 20px;
+    opacity: 1;
+    box-shadow: 0px 0px 16px 0px #00000026;
+    box-sizing: border-box;
+    /* Bao gồm padding và border trong kích thước */
+    overflow-y: auto;
+    /* Bật cuộn dọc nếu nội dung vượt quá chiều cao */
+    position: relative;
+}
+
+.category-layout::-webkit-scrollbar {
+    width: 10px;
+    height: 370px;
+    gap: 10px;
+}
+
+.category-layout::-webkit-scrollbar-thumb {
+    width: 10px;
+    height: 199px;
+    border-radius: 100px;
+    background: var(--primary-light-200, #FFC900);
+}
+
+.category-layout::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 100px;
+    /* Màu nền thanh cuộn */
+}
+
+.category-layout {
+    max-height: 100%;
+    /* Đặt chiều cao tối đa dựa trên cha */
+    width: 100%;
+    /* Đặt chiều rộng theo form-container */
+    overflow-y: auto;
+    /* Bật cuộn dọc */
+    padding-right: 10px;
+}
+
+
+
+/* @media screen {
+    
+} */
+
