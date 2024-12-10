@@ -70,15 +70,14 @@
     background: none;
 }
 
-.subcategories {
-    display: flex;
+.sub-categories {
     margin-left: 30px;
-    /* Indent subcategories */
     padding-left: 10px;
-    border-left: 2px solid #ccc;
 }
-.navigation{
-    margin-left: 15px;
+
+.navigation {
+    position: absolute;
+    margin-left: -25px;
     margin-right: 10px;
     width: 18px;
     height: 24px;
@@ -86,23 +85,23 @@
     border-left: solid #ccc 1px;
     border-bottom: solid #ccc 1px;
     border-bottom-left-radius: 10px;
-    /* float: left; */
+    z-index: 2;
 }
-.sub {
-    height: 100%;
-    margin-left: 20px;
-}
-.all-category{
+
+.all-category {
     position: relative;
 }
-.sub:before {
-    background-color: #e1dedd;
+
+ul.sub-categories::before {
+    background-color: #ccc;
     content: "";
     display: block;
-    height: calc(100% - 65px);
+    /* height: calc(100% - 70px); */
+    height: var(--before-height, 100%);
     left: 15px;
     position: absolute;
     top: 42px;
     width: 1px;
 }
+
 

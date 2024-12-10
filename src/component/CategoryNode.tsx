@@ -1,43 +1,83 @@
-import React, { useState } from 'react';
+import React, { useRef, useLayoutEffect, useEffect } from 'react';
 import "../css/CategoryNode.css";
 import { IoMdAdd } from "react-icons/io";
 import { GrFormSubtract } from "react-icons/gr";
-
-
-
 
 // Interface cho Category
 interface Category {
     id: number;
     name: string;
-    logo: string;  // Thêm thuộc tính logo
+    logo: string;
     subCategories: Category[];
 }
+
 const CategoryNode = ({
     category,
     selectedCategory,
     setSelectedCategory,
     expandedCategories,
     setExpandedCategories,
+    level = 1,
 }: {
     category: Category;
     selectedCategory: number | null;
     setSelectedCategory: React.Dispatch<React.SetStateAction<number | null>>;
     expandedCategories: Record<number, boolean>;
     setExpandedCategories: React.Dispatch<React.SetStateAction<Record<number, boolean>>>;
+    level?: number;
 }) => {
     const isExpanded = expandedCategories[category.id] || false;
+    const categoryRef = useRef<HTMLUListElement | null>(null);
 
-    const handleToggle = () => {
-        setExpandedCategories((prev) => ({
-            ...prev,
-            [category.id]: !isExpanded,
-        }));
+    // Hàm tính chiều cao và cập nhật trước
+    const markLastItem = (ul: HTMLUListElement) => {
+        const directChildLis = Array.from(ul.children).filter(
+            (child) => child.tagName === "LI"
+        ) as HTMLLIElement[];
+    
+        if (directChildLis.length === 0) {
+            ul.style.setProperty("--before-height", `0px`); // Đặt chiều cao về 0 nếu không có phần tử con
+        } else {
+            const lastLi = directChildLis[directChildLis.length - 1];
+            const ulHeight = ul.offsetHeight;
+            const lastLiHeight = lastLi.offsetHeight;
+            const beforeHeight = (ulHeight - lastLiHeight) * 1.05;
+            ul.style.setProperty("--before-height", `${beforeHeight}px`);
+        }
     };
 
+    // Hàm cập nhật chiều cao cho các bậc cha của ul
+    const updateParentHeights = (ul: HTMLUListElement | null) => {
+        while (ul) {
+            markLastItem(ul);  // Tính lại chiều cao cho phần tử hiện tại
+            ul = ul.parentElement?.closest("ul") as HTMLUListElement | null;
+        }
+    };    
+
+    const handleToggle = () => {
+        // Đảo trạng thái mở rộng
+        setExpandedCategories((prev) => ({
+            ...prev,
+            [category.id]: !isExpanded, 
+        }));
+    
+        if (categoryRef.current) {
+            requestAnimationFrame(() => {
+                updateParentHeights(categoryRef.current); // Cập nhật chiều cao
+            });
+        }
+    };
+
+    useLayoutEffect(() => {
+        if (categoryRef.current) {
+            updateParentHeights(categoryRef.current);
+        }
+    }, [isExpanded]);// Cập nhật chiều cao khi isExpanded thay đổi 
+    
+    
+    
     return (
-        <>
-        <li className='list-unstyled all-category'>
+        <li className="list-unstyled all-category">
             <div
                 className={`category-data ${selectedCategory === category.id ? "selected" : ""}`}
                 onClick={(e) => {
@@ -65,28 +105,30 @@ const CategoryNode = ({
                     )}
                 </div>
             </div>
-            <>
-                {isExpanded && category.subCategories.length > 0 && (
-                    <>
-                        <ul className="list-unstyled sub">
-                            <div className='sub'>
-                                {category.subCategories.map((child) => (
-                                    <CategoryNode
-                                        key={child.id}
-                                        category={child}
-                                        selectedCategory={selectedCategory}
-                                        setSelectedCategory={setSelectedCategory}
-                                        expandedCategories={expandedCategories}
-                                        setExpandedCategories={setExpandedCategories}
-                                    />
-                                ))}
-                            </div>
-                        </ul>
-                    </>
-                )}
-            </>
+            {isExpanded && category.subCategories.length > 0 && (
+                <ul className="list-unstyled sub-categories" ref={categoryRef}>
+                    {category.subCategories.map((subCategory) => (
+                        <li
+                            key={subCategory.id}
+                            className={`list-unstyled sub-category-item level-${level}`}
+                            data-level={level}
+                        >
+                            <div className="navigation"></div>
+                            <CategoryNode
+                                key={subCategory.id}
+                                category={subCategory}
+                                selectedCategory={selectedCategory}
+                                setSelectedCategory={setSelectedCategory}
+                                expandedCategories={expandedCategories}
+                                setExpandedCategories={setExpandedCategories}
+                                level={level + 1}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            )}
         </li>
-        </>
     );
 };
+
 export default CategoryNode;

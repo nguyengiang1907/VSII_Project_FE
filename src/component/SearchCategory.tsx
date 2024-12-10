@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../css/SearchCategory.css";
 import { FiSearch } from "react-icons/fi";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,6 +25,8 @@ const SearchCategory: React.FC<CategoryTreeProps> = ({ categories }) => {
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
     const [expandedCategories, setExpandedCategories] = useState<Record<number, boolean>>({});
     const [showCategories, setShowCategories] = useState(false); // Kiểm soát hiển thị danh sách
+    // const input = document.querySelector('input');
+ 
 
     // Toggle hiển thị danh sách
     const toggleShowCategories = () => {
@@ -43,6 +45,7 @@ const SearchCategory: React.FC<CategoryTreeProps> = ({ categories }) => {
                             <input
                                 type="text"
                                 placeholder="Tìm kiếm thiết bị bạn muốn bán từ danh sách"
+                                id='input'
                             />
                         </div>
                     </div>

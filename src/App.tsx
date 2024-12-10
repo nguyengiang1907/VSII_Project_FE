@@ -74,7 +74,9 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <SearchCategory categories={categories} />
+      {/* <SearchCategory categories={categories} /> */}
+
+
     </div>
   );
 };
