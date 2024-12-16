@@ -3,23 +3,20 @@
     height: 40px;
     align-items: center;
     justify-content: flex-start;
-    /* Căn nội dung về bên trái */
+    border-radius: 5px;
     gap: 10px;
     padding: 2px;
     box-sizing: content-box;
     position: relative;
+    cursor: pointer; 
+}
+.category-data:hover {
+    background-color: #FFEFD5;
+ 
 }
 
 .category-data>*:last-child {
     margin-right: 10px;
-    /* Thêm 10px vào phần tử cuối cùng */
-}
-
-.category-data.selected {
-    /* background-color:#ffefd5; */
-    background: #F6C74433;
-    /* Màu nền khi chọn */
-    border-radius: 5px;
 }
 
 .category-logo {

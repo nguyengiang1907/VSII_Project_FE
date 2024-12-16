@@ -1,0 +1,84 @@
+
+.fullscreen-container {
+    background-image: url('/public/image/BackgroundLogin.svg');
+    background-size: cover; /* Đảm bảo hình nền luôn bao phủ toàn bộ */
+    background-position: center; /* Căn chỉnh hình nền ở giữa */
+    background-repeat: no-repeat; /* Không lặp lại hình nền */
+    height: 100vh; /* Chiếm toàn bộ chiều cao của cửa sổ trình duyệt */
+    width: 100vw; /* Chiếm toàn bộ chiều rộng của cửa sổ trình duyệt */
+    position: fixed; /* Đặt phần tử này cố định trên trang */
+    top: 0; /* Đảm bảo phần tử bắt đầu từ trên cùng */
+    left: 0; /* Đảm bảo phần tử bắt đầu từ bên trái */
+    z-index: -1; /* Đảm bảo hình nền nằm dưới các phần tử khác */
+  }
+
+.form-login {
+    width: 100%;
+    max-width: 410px;
+    height: 510px;
+    max-height: 510px;
+    border-radius: 20px;
+    padding: 30px;
+    gap: 30px;
+    box-shadow: 0px 0px 16px 0px #00000026;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-login {
+    max-width: 100%;
+    height: 78px;
+    gap: 6px;
+}
+
+.input-login {
+    width: 100%;
+    max-height: 276px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-pn-ps {
+    width: 100%;
+    height: 207px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 1; /* Đảm bảo opacity là 1 để phần tử hiển thị */
+}
+
+.title {
+    width: 100%;
+    max-height: 34px;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 33.89px;
+}
+
+.title-content {
+    width: 100%;
+    max-height: 38px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+}
+
+.transfer-sign-up {
+    width: 100%;
+    height: 27px;
+    gap: 6px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 27px;
+    text-decoration-skip-ink: none;
+}

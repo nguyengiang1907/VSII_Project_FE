@@ -1,4 +1,5 @@
-import React, { useRef, useLayoutEffect, useEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "../css/CategoryNode.css";
 import { IoMdAdd } from "react-icons/io";
 import { GrFormSubtract } from "react-icons/gr";
@@ -26,7 +27,6 @@ const CategoryNode = ({
     setExpandedCategories: React.Dispatch<React.SetStateAction<Record<number, boolean>>>;
     level?: number;
 }) => {
-    const isExpanded = expandedCategories[category.id] || false;
     const categoryRef = useRef<HTMLUListElement | null>(null);
 
     // Hàm tính chiều cao và cập nhật trước
@@ -58,7 +58,7 @@ const CategoryNode = ({
         // Đảo trạng thái mở rộng
         setExpandedCategories((prev) => ({
             ...prev,
-            [category.id]: !isExpanded, 
+            [category.id]: !prev[category.id], // Đảo ngược trạng thái
         }));
     
         if (categoryRef.current) {
@@ -68,11 +68,13 @@ const CategoryNode = ({
         }
     };
 
+    const isExpanded = expandedCategories[category.id] || false;
+
     useLayoutEffect(() => {
         if (categoryRef.current) {
             updateParentHeights(categoryRef.current);
         }
-    }, [isExpanded]);// Cập nhật chiều cao khi isExpanded thay đổi 
+    }, [expandedCategories]);
     
     
     
